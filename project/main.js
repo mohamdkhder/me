@@ -5,7 +5,7 @@ var prodactPr = document.getElementById("prodactPr");
 var prodactcat = document.getElementById("prodactcat");
 var prodactdes = document.getElementById("prodactdes");
 var savebtn = document.getElementById("savebtn");
-var prodctList
+var prodctList;
 
 if (localStorage.getItem("prodctList") == null) {
     prodctList = []
@@ -14,7 +14,7 @@ else {
     prodctList = JSON.parse(localStorage.getItem("prodctList"))
     displyProdct(prodctList)
 }
-var can
+var can;
 function localStorageup() {
     localStorage.setItem("prodctList", JSON.stringify(prodctList))
 }
@@ -33,17 +33,17 @@ function addPordcet() {
     clear()
 }
 
-function displyProdct() {
+function displyProdct(productsToDisplay = prodctList) {
     var cart = ''
-    for (var i = 0; i < prodctList.length; i++) {
+    for (var i = 0; i < productsToDisplay.length; i++) {
         cart +=
             `
         <tr>
                     <td>${i + 1}</td>
-                    <td>${prodctList[i].name}</td>
-                    <td>${prodctList[i].price}</td>
-                    <td>${prodctList[i].catog}</td>
-                    <td>${prodctList[i].desc}</td>
+                    <td>${productsToDisplay[i].name}</td>
+                    <td>${productsToDisplay[i].price}</td>
+                    <td>${productsToDisplay[i].catog}</td>
+                    <td>${productsToDisplay[i].desc}</td>
                     <td><button onclick="update(${i})" class="btn btn-success">up date</button></td>
                     <td><button onclick="Delete(${i})" class="btn btn-danger">Delete</button></td>
                 </tr>
@@ -107,5 +107,4 @@ function searchProduct(data) {
         }
         displyProdct(newProductsList)
     }
-
 }
